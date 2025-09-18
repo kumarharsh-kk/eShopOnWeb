@@ -7,7 +7,7 @@ on: [push, workflow_dispatch]
 env:
   RESOURCE-GROUP: az400-test-rg-harsh
   LOCATION: westus
-  TEMPLATE-FILE: infra/webapp.bicep
+  TEMPLATE-FILE: /infra/webapp.bicep
   SUBSCRIPTION-ID: KMLDevSubscription
   WEBAPP-NAME: eshoponweb-webapp-hsuh
 
