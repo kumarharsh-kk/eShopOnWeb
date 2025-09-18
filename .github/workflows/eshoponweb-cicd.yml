@@ -1,4 +1,4 @@
-name: eShopOnWeb Build and Test
+1name: eShopOnWeb Build and Test
 
 #Triggers (uncomment line below to use it)
 on: [push, workflow_dispatch]
@@ -9,7 +9,7 @@ env:
   LOCATION: westus
   TEMPLATE-FILE: infra/webapp.bicep
   SUBSCRIPTION-ID: KMLDevSubscription
-  WEBAPP-NAME: eshoponweb-webapp-hshu
+  WEBAPP-NAME: eshoponweb-webapp-hsuho
 
 
 jobs:
