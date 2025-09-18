@@ -39,18 +39,18 @@ jobs:
           zip -r ../app.zip .
 
       # upload the published website code artifacts
-      - name: Upload artifact for deployment job
+      - name: Upload artifact for deployment job (.NET app)
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/app.zip
 
-      # upload the entire infra folder so path is preserved
-      - name: Upload artifact for deployment job
+      # upload the bicep template (just the file)
+      - name: Upload artifact for deployment job (Bicep template)
         uses: actions/upload-artifact@v4
         with:
           name: bicep-template
-          path: infra/
+          path: infra/webapp.bicep
 
   # Use Bicep to deploy infrastructure + Publish webapp 
   deploy:
@@ -67,7 +67,7 @@ jobs:
           path: .net-app
 
       # Download the bicep templates from previous job
-      - name: Download artifact from build job (bicep)
+      - name: Download artifact from build job (Bicep template)
         uses: actions/download-artifact@v4
         with:
           name: bicep-template
@@ -89,7 +89,7 @@ jobs:
         with:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
-          template: bicep-template/infra/webapp.bicep   # <-- matches upload
+          template: bicep-template/webapp.bicep   # <-- corrected path
           parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
           failOnStdErr: false   
 
