@@ -5,11 +5,11 @@ on: [push, workflow_dispatch]
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
 env:
-  RESOURCE-GROUP: az400-test-rg-harsh
+  RESOURCE_GROUP: az400-test-rg-harsh
   LOCATION: westus
-  TEMPLATE-FILE: infra/webapp.bicep
-  SUBSCRIPTION-ID: 98262e15-4e4b-4353-8400-a7ab9c1c8d70
-  WEBAPP-NAME: eshoponweb-webapphua
+  TEMPLATE_FILE: infra/webapp.bicep
+  SUBSCRIPTION_ID: 98262e15-4e4b-4353-8400-a7ab9c1c8d70
+  WEBAPP_NAME: eshoponweb-webapphua
 
 
 jobs:
@@ -47,7 +47,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: bicep-template
-        path: ${{ env.TEMPLATE-FILE }}
+        path: ${{ env.TEMPLATE_FILE }}
         
   # Use Bicep to deploy infrastructure + Publish webapp 
   deploy:
@@ -81,10 +81,10 @@ jobs:
     - name: deploy
       uses: azure/arm-deploy@v2
       with:
-        subscriptionId: ${{ env.SUBSCRIPTION-ID }}
-        resourceGroupName: ${{ env.RESOURCE-GROUP }}
+        subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+        resourceGroupName: ${{ env.RESOURCE_GROUP }}
         template: bicep-template/webapp.bicep
-        parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+        parameters: 'webAppName=${{ env.WEBAPP_NAME }} location=${{ env.LOCATION }}'
         failOnStdErr: false   
     
     # Publish website to Azure App Service (WebApp)
@@ -94,7 +94,7 @@ jobs:
       uses: Azure/webapps-deploy@v3
       with:
         type: ZIP
-        app-name: ${{ env.WEBAPP-NAME  }}
+        app-name: ${{ env.WEBAPP_NAME  }}
         package: .net-app/app.zip
 
     # Publish website to Azure App Service using CLI (WebApp)
@@ -102,4 +102,4 @@ jobs:
       uses: Azure/cli@v2
       with:
         inlineScript: |
-             az webapp deploy --name ${{ env.WEBAPP-NAME }} --resource-group ${{ env.RESOURCE-GROUP }} --src-path .net-app/app.zip --type zip
+             az webapp deploy --name ${{ env.WEBAPP_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --src-path .net-app/app.zip --type zip
