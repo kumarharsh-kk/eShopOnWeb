@@ -73,8 +73,7 @@ jobs:
         with:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
-          # 👇 note the infra/ folder
-          template: bicep-template/infra/webapp.bicep
+          template: bicep-template/webapp.bicep
           parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
           failOnStdErr: false
 
