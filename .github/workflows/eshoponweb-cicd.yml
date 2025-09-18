@@ -5,11 +5,11 @@ on: [push, workflow_dispatch]
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
 env:
-  RESOURCE-GROUP: az400-test-rg-harsh
-  LOCATION: westus
-  TEMPLATE-FILE: infra/webapp.bicep
-  SUBSCRIPTION-ID: KMLDevSubscription
-  WEBAPP-NAME: eshop-webapp-hshuon
+  RESOURCE-GROUP: 'az400-test-rg-harsh'
+  LOCATION: 'westus'
+  TEMPLATE-FILE: 'infra/webapp.bicep'
+  SUBSCRIPTION-ID: 'KMLDevSubscription'
+  WEBAPP-NAME: 'eshop-webapp-hshuon'
 
 
 jobs:
