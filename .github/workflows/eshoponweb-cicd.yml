@@ -6,7 +6,7 @@ env:
   RESOURCE-GROUP: 'az400-test-rg-harsh'
   LOCATION: 'westus'
   TEMPLATE-FILE: 'infra/webapp.bicep'
-  SUBSCRIPTION-ID: 'KMLDevSubscription'
+  SUBSCRIPTION-ID: '98262e15-4e4b-4353-8400-a7ab9c1c8d70'
   WEBAPP-NAME: 'eshop-webapp-hshuon'
 
 jobs:
