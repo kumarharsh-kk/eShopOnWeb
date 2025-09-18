@@ -39,11 +39,11 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/app.zip
         
-      - name: Upload artifact (Bicep template)
+      - name: Upload artifact (Bicep templates folder)
         uses: actions/upload-artifact@v4
         with:
           name: bicep-template
-          path: ${{ env.TEMPLATE-FILE }}
+          path: infra/
 
   deploy:
     runs-on: ubuntu-latest
@@ -73,7 +73,7 @@ jobs:
         with:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
-          template: bicep-template/webapp.bicep
+          template: bicep-template/infra/webapp.bicep   # ✅ matches folder structure
           parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
           failOnStdErr: false
 
